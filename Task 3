@@ -1,0 +1,39 @@
+// Function to simulate sending a verification email
+function sendVerificationEmail(email) {
+  return new Promise((resolve, reject) => {
+    console.log("Sending verification email...");
+
+    // Simulate email sending delay (2 seconds)
+    setTimeout(() => {
+      // Check if email exists
+      if (email) {
+        resolve("Email sent successfully");
+      } else {
+        reject("Invalid email");
+      }
+    }, 2000);
+  });
+}
+
+// Function to register a user
+async function registerUser(name, email) {
+  try {
+    // Validate user input
+    if (!name || !email) {
+      throw new Error("Name and email are required");
+    }
+
+    // Wait until the verification email is sent
+    const message = await sendVerificationEmail(email);
+
+    // Display success messages
+    console.log(message);
+    console.log("User registered successfully");
+  } catch (error) {
+    // Handle any errors
+    console.log("Error:", error.message || error);
+  }
+}
+
+// Example
+registerUser("Sandy", "sandy@gmail.com");
