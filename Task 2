@@ -1,0 +1,40 @@
+/**
+ * Calculates shipping cost based on package weight using a Promise.
+ * 
+ * @param {number} weight - The weight of the package.
+ * @returns {Promise<number>} Resolves with the shipping cost or rejects with an error message.
+ */
+function calculateShipping(weight) {
+  // Create and return a new Promise
+  return new Promise((resolve, reject) => {
+    // Check if the weight is invalid (zero or negative)
+    if (weight <= 0) {
+      // Reject the request with an error message
+      reject("Invalid weight: Weight must be greater than zero.");
+    } else {
+      // Calculate shipping cost (weight * 5)
+      const cost = weight * 5;
+      
+      // Resolve the Promise with the calculated cost
+      resolve(cost);
+    }
+  });
+}
+
+// Valid Example:
+calculateShipping(10)
+  .then((cost) => {
+    console.log(`Shipping cost: ${cost}`); // Output: Shipping cost: 50
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+// Invalid Example:
+calculateShipping(-2)
+  .then((cost) => {
+    console.log(`Shipping cost: ${cost}`);
+  })
+  .catch((error) => {
+    console.error(error); // Output: Invalid weight: Weight must be greater than zero.
+  });
